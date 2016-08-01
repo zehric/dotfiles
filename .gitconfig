@@ -1,0 +1,7 @@
+[user]
+	email = ericfzhou@berkeley.edu
+	name = Eric Zhou
+[core]
+	autocrlf = false
+[credential]
+	helper = 'store'
