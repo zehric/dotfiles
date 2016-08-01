@@ -56,6 +56,7 @@ syntax on
 source $VIMRUNTIME/mswin.vim
 
 " Visuals
+" Comment out font if not on Windows
 if has('gui_running')
     set guifont=Consolas:h11:cANSI
 endif
@@ -67,14 +68,14 @@ hi colorcolumn guibg=#2c2d27
 set undofile
 set backup
 " Windows
-" set dir=C:\\Users\\Eric\\vimfiles\\swap//,.,c:\\tmp,c:\\temp
-" set backupdir=C:\\Users\\Eric\\vimfiles\\backup//,.,c:\\tmp,c:\\temp
-" set undodir=C:\\Users\\Eric\\vimfiles\\undo//,.,c:\\tmp,c:\\temp
+set dir=C:\\Users\\Eric\\vimfiles\\swap//,.,c:\\tmp,c:\\temp
+set backupdir=C:\\Users\\Eric\\vimfiles\\backup//,.,c:\\tmp,c:\\temp
+set undodir=C:\\Users\\Eric\\vimfiles\\undo//,.,c:\\tmp,c:\\temp
 
 " Linux
-set undodir=~/.vim/undo//
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swp//
+" set undodir=~/.vim/undo//
+" set backupdir=~/.vim/backup//
+" set directory=~/.vim/swp//
 
 " ensure file format is unix
 set fileformat=unix
