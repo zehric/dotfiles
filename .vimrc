@@ -1,7 +1,6 @@
 " vim-plug
 call plug#begin('$USERPROFILE/vimfiles/plug')
 
-Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'roosta/srcery'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
