@@ -6,6 +6,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
 Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
