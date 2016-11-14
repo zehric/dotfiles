@@ -1,10 +1,12 @@
 " vim-plug
 call plug#begin('$USERPROFILE/vimfiles/plug')
 
-Plug 'roosta/srcery'
+Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
+Plug 'hdima/python-syntax'
+Plug 'NLKNguyen/c-syntax.vim'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 
@@ -60,9 +62,9 @@ source $VIMRUNTIME/mswin.vim
 if has('gui_running')
     set guifont=Consolas:h11:cANSI
 endif
-let g:srcery_bold=0
-colorscheme srcery
-hi colorcolumn guibg=#2c2d27
+set background=dark
+colorscheme hybrid_reverse
+hi colorcolumn guibg=#1A222B
 
 " Backups
 set undofile
