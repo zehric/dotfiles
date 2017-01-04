@@ -1,1 +1,1 @@
-mklink %USERPROFILE%\_vimrc %USERPROFILE%\Tools\dotfiles\.vimrc
+mklink "%USERPROFILE%\_vimrc" "%USERPROFILE%\Tools\dotfiles\.vimrc"
