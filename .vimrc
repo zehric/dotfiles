@@ -80,5 +80,6 @@ set fileformats=unix,dos
 
 " Plugins
 let delimitMate_expand_cr=1
+let python_highlight_all = 1
 
 let g:tex_flavor='latex'
