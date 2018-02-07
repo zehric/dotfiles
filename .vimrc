@@ -1,84 +1,105 @@
 " vim-plug
-call plug#begin('$USERPROFILE/vimfiles/plug')
+call plug#begin('~/.vim/plug')
 
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-commentary'
-Plug 'pangloss/vim-javascript'
-Plug 'hdima/python-syntax'
-Plug 'NLKNguyen/c-syntax.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'SirVer/ultisnips'
+Plug 'godlygeek/tabular'
+Plug 'benmills/vimux'
+Plug 'craigemery/vim-autotag'
 Plug 'ervandew/supertab'
-Plug 'tpope/vim-surround'
-Plug 'vim-latex/vim-latex'
+Plug 'vim-syntastic/syntastic'
+Plug 'kien/ctrlp.vim'
+
+Plug 'NLKNguyen/c-syntax.vim'
+Plug 'honza/vim-snippets'
+Plug 'Raimondi/delimitMate'
+Plug 'tobyS/vmustache'
+Plug 'tomtom/tcomment_vim'
+Plug 'neomake/neomake'
+Plug 'hdima/python-syntax'
+
+Plug 'nanotech/jellybeans.vim'
+Plug 'dracula/vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
 " Editor tweaks
 set ruler
-set laststatus=2
 set softtabstop=4
 set expandtab
 set shiftwidth=4
-set smarttab
 set autoindent
 set smartindent
+set smarttab
 set cindent
-set paste
 set number
-set relativenumber
-nnoremap <F2> :set rnu!<CR>
-set hidden
 set backspace=indent,eol,start
 set autoread
 set showmode
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
-set nowrap
 set incsearch
+set wrap linebreak nolist
 set hlsearch
+set colorcolumn=80
+set scrolloff=5
 set ignorecase
 set smartcase
-set incsearch
-set colorcolumn=101
-set lines=65
-set scrolloff=3
-set columns=110
-set guioptions-=T
 filetype indent plugin on
 set nocompatible
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+
+map <C-n> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+
+set tags=tags;/
 
 syntax on
 
-" Windows keystrokes
-source $VIMRUNTIME/mswin.vim
-
 " Visuals
-" Comment out font if not on Windows
-if has('gui_running')
-    set guifont=Consolas:h11
-endif
-colorscheme moonfly
+set t_Co=256
+colorscheme dracula
+set t_ut=
 
 " Backups
 set undofile
 set backup
-" Windows
-set dir=%USERPROFILE%\\vimfiles\\swap//,.,C:\\tmp,C:\\temp
-set backupdir=%USERPROFILE%\\vimfiles\\backup//,.,C:\\tmp,C:\\temp            
-set undodir=%USERPROFILE%\\vimfiles\\undo//,.,C:\\tmp,C:\\temp
-
-" Linux
-" set undodir=~/.vim/undo//
-" set backupdir=~/.vim/backup//
-" set directory=~/.vim/swp//
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
 
 " ensure file format is unix
 set fileformat=unix
 set fileformats=unix,dos
 
-" Plugins
+" plugins
+let g:airline_theme='dracula'
+let g:airline#extensions#tabline#enabled = 1
+
+let g:ctrlp_map = '<c-p>'
+map <F3> :CtrlPTag<CR>
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|o)$'
+  \ }
+let g:ctrlp_extensions = ['tag']
+
+let g:autotagTagsFile="tags"
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_c_checkers = ['gcc']
+
 let delimitMate_expand_cr=1
 
-let g:tex_flavor='latex'
+let NERDTreeIgnore = ['\.o$']
+
+let python_highlight_all=1
