@@ -3,22 +3,18 @@ call plug#begin('~/.vim/plug')
 
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'SirVer/ultisnips'
 Plug 'godlygeek/tabular'
-Plug 'benmills/vimux'
 Plug 'craigemery/vim-autotag'
 Plug 'ervandew/supertab'
-Plug 'vim-syntastic/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
 
 Plug 'NLKNguyen/c-syntax.vim'
-Plug 'honza/vim-snippets'
 Plug 'Raimondi/delimitMate'
-Plug 'tobyS/vmustache'
 Plug 'tomtom/tcomment_vim'
-Plug 'neomake/neomake'
 Plug 'hdima/python-syntax'
 
 Plug 'dracula/vim'
@@ -53,7 +49,10 @@ set nocompatible
 
 map <C-n> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
-nmap <F7> :bufdo e %<CR>
+nnoremap <silent> <c-l> <c-w>l
+nnoremap <silent> <c-h> <c-w>h
+nnoremap <silent> <c-k> <c-w>k
+nnoremap <silent> <c-j> <c-w>j
 
 set tags=tags;/
 
@@ -86,7 +85,6 @@ let g:airline_theme='dracula'
 let g:airline#extensions#tabline#enabled = 1
 
 let g:ctrlp_map = '<c-p>'
-map <c-k> :CtrlPTag<CR>
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -97,17 +95,6 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_extensions = ['tag']
 
 let g:autotagTagsFile="tags"
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_c_checkers = ['gcc']
-let g:syntastic_c_include_dirs = ['../include', 'include', '../lib', 'lib']
-let g:syntastic_mode="passive"
-let g:syntastic_check_on_open = 0
 
 let delimitMate_expand_cr=1
 let python_highlight_all = 1
