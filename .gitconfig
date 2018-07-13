@@ -3,5 +3,4 @@
 	name = Eric Zhou
 [core]
 	autocrlf = false
-[credential]
-	helper = 'store'
+	editor = vim

@@ -76,6 +76,12 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'c']
 let g:markdown_syntax_conceal = 0
 let g:markdown_minlines = 100
 
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
 " plugins
 let g:airline_theme='dracula'
 let g:airline#extensions#tabline#enabled = 1

@@ -1,0 +1,134 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -Al'
+alias l='ls -CF'
+alias lt='ls -alptr'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+### COLOR SETTINGS
+
+# PS1 CONFIG {{{
+[[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
+if $_isxrunning; then
+
+  [[ -f $HOME/.dircolors_256 ]] && eval $(dircolors -b $HOME/.dircolors_256)
+
+  export TERM='xterm-256color'
+
+  B='\[\e[1;38;5;33m\]'
+  LB='\[\e[1;38;5;81m\]'
+  GY='\[\e[1;38;5;242m\]'
+  G='\[\e[1;38;5;82m\]'
+  P='\[\e[1;38;5;161m\]'
+  PP='\[\e[1;38;5;93m\]'
+  R='\[\e[1;38;5;196m\]'
+  Y='\[\e[1;38;5;214m\]'
+  W='\[\e[0m\]'
+
+  get_prompt_symbol() {
+    [[ $UID == 0 ]] && echo "#" || echo "\$"
+  }
+
+  if [[ $PS1 && -f ~/.git-prompt.sh ]]; then
+    source ~/.git-prompt.sh
+
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWSTASHSTATE=1
+    export GIT_PS1_SHOWUNTRACKEDFILES=0
+
+    export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W\$(__git_ps1 \"$GY|$LB%s\")$GY]$W\$(get_prompt_symbol) "
+  else
+    export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$GY]$W\$(get_prompt_symbol) "
+  fi
+else
+  export TERM='xterm-color'
+fi
+#}}}
+
+
+
+# COLORED MANUAL PAGES {{{
+# @see http://www.tuxarena.com/?p=508
+# For colourful man pages (CLUG-Wiki style)
+if $_isxrunning; then
+  export PAGER=less
+  export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+  export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+  export LESS_TERMCAP_me=$'\E[0m'           # end mode
+  export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+  export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+  export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+  export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+fi
+#}}}
