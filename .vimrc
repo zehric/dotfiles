@@ -1,11 +1,9 @@
 " vim-plug
 call plug#begin('~/.vim/plug')
 
-Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
-Plug 'craigemery/vim-autotag'
-Plug 'ervandew/supertab'
+Plug 'ajh17/VimCompletesMe'
+" Plug 'craigemery/vim-autotag'
 Plug 'kien/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -47,28 +45,26 @@ set smartcase
 filetype indent plugin on
 set nocompatible
 
-map <C-n> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
 nnoremap <silent> <c-l> <c-w>l
 nnoremap <silent> <c-h> <c-w>h
 nnoremap <silent> <c-k> <c-w>k
 nnoremap <silent> <c-j> <c-w>j
 
-set tags=tags;/
+" set tags=tags;/
 
 syntax on
 
 " Visuals
 set t_Co=256
+let g:dracula_colorterm=0
 colorscheme dracula
-set t_ut=
 
 " Backups
 set undofile
 set backup
 set undodir=~/.vim/undo//
 set backupdir=~/.vim/backup//
-set directory=~/.vim/swp//
+set directory=~/.vim/swap//
 
 " ensure file format is unix
 set fileformat=unix
@@ -94,11 +90,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_extensions = ['tag']
 
-let g:autotagTagsFile="tags"
+" let g:autotagTagsFile="tags"
 
 let delimitMate_expand_cr=1
 let python_highlight_all = 1
-
-let NERDTreeIgnore = ['\.o$']
-
-let python_highlight_all=1
