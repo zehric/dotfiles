@@ -1,28 +1,29 @@
 " vim-plug
 call plug#begin('~/.vim/plug')
 
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 Plug 'ajh17/VimCompletesMe'
 " Plug 'craigemery/vim-autotag'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
+Plug 'unblevable/quick-scope'
 
 Plug 'NLKNguyen/c-syntax.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'tomtom/tcomment_vim'
+" Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
 Plug 'hdima/python-syntax'
 
 Plug 'dracula/vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
 " Editor tweaks
-set ruler
 set softtabstop=2
 set expandtab
 set shiftwidth=2
@@ -44,6 +45,7 @@ set ignorecase
 set smartcase
 filetype indent plugin on
 set nocompatible
+set laststatus=2
 
 nnoremap <silent> <c-l> <c-w>l
 nnoremap <silent> <c-h> <c-w>h
@@ -74,6 +76,7 @@ set fileformats=unix,dos
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'c']
 let g:markdown_syntax_conceal = 0
+
 let g:markdown_minlines = 100
 
 " Return to last edit position when opening files
@@ -82,9 +85,17 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
+set statusline=
+set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%5*\ %{&ff}%*            "file format
+set statusline +=%3*%y%*                "file type
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%2*0x%04B\ %*          "character under cursor
+
 " plugins
-let g:airline_theme='dracula'
-let g:airline#extensions#tabline#enabled = 1
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -100,3 +111,6 @@ let g:ctrlp_extensions = ['tag']
 
 let delimitMate_expand_cr=1
 let python_highlight_all = 1
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_max_chars=200
