@@ -24,9 +24,9 @@ Plug 'dracula/vim'
 call plug#end()
 
 " Editor tweaks
-set softtabstop=2
-set expandtab
-set shiftwidth=2
+set softtabstop=8
+set noexpandtab
+set shiftwidth=8
 set autoindent
 set smartindent
 set smarttab
